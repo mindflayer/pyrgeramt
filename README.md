@@ -1,2 +1,15 @@
-# pyrgeramt
-Easy way to find free slots and book a reservation in one of the Bürgerämt in Berlin
+Installation
+-----------
+
+```
+virtualenv -p python3 .venv
+source .venv/bin/activare
+pip install -r requirements.txt
+```
+
+Usage
+-----
+
+```ruby
+python berlin.py
+```
