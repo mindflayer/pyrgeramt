@@ -11,6 +11,7 @@ Usage
 -----
 
 ```
-# It will open your favourite browser with the reservation pages
 python berlin.py
+# After the area selection, if there are free slots in it,
+# it will point your favourite browser to the reservation pages
 ```
