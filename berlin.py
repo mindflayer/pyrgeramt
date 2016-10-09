@@ -72,11 +72,11 @@ for url in reservation_pages:
             slots += slot
 
 l_slots = len(slots)
-if l_slots > 1:
+if l_slots:
+    input("\n--- Press ENTER and watch the first page I'm opening to solve the CAPTCHA (if it's there). ---")
     webbrowser.open_new(slots[0])
-    for s in slots[1:]:
+    input("--- Press ENTER when solved, or CTRL-C to finish, if you already booked a reservation. ---")
+    for s in slots:
         webbrowser.open_new_tab(s)
-elif l_slots == 1:
-    webbrowser.open_new(slots[0])
 else:
     print('\nNo dates in "{}", try another Bürgeramt area.'.format(area))
