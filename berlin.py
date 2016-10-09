@@ -79,8 +79,7 @@ for url in reservation_pages:
             slot = [base_url + '/' + a.get('href') for a in browser.find_all('a', 'tagesauswahl')]
             slots += slot
 
-l_slots = len(slots)
-if l_slots:
+if len(slots):
     input("\n--- Press ENTER and watch the first page I'm opening to solve the CAPTCHA (if it's there). ---")
     webbrowser.open_new(slots[0])
     input("--- Press ENTER when solved, or CTRL-C to finish, if you've already booked a reservation. ---")
