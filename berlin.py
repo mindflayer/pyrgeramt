@@ -45,11 +45,12 @@ for p in services_pages:
 slots = []
 for url in reservation_pages:
     browser.open(url)
+    base_url = url.rsplit('/', 1)[0]
     for n in browser.find_all('th', 'next'):
         for a in n.find_all('a'):
-            u = url.rsplit('/', 1)[0] + '/' + a.get('href')
+            u = base_url + '/' + a.get('href')
             browser.open(u)
-            slot = [url.rsplit('/', 1)[0] + '/' + a.get('href') for a in browser.find_all('a', 'tagesauswahl')]
+            slot = [base_url + '/' + a.get('href') for a in browser.find_all('a', 'tagesauswahl')]
             slots += slot
 
 l_slots = len(slots)
