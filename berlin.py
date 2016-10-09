@@ -3,6 +3,8 @@ import webbrowser
 import time
 import random
 import sys
+import argparse
+
 
 from robobrowser import RoboBrowser
 from fake_useragent import UserAgent
@@ -21,7 +23,13 @@ class BurgyBrowser(RoboBrowser):
         super(BurgyBrowser, self).open(*args, **kwargs)
         self.requests += 1
 
-SERVICE_NAME = 'anmeldung'
+parser = argparse.ArgumentParser()
+parser.add_argument("-s", "--service", help="Which service are you going to book (e.g.: anmeldung)?", default=None)
+args = parser.parse_args()
+
+if not args.service:
+    parser.print_help()
+    sys.exit()
 
 START_URL = 'https://service.berlin.de'
 
@@ -51,7 +59,7 @@ for burgy in burgers[n]:
     url = '{}{}'.format(START_URL, burgy.get('href'))
     browser.open(url)
     services = browser.find_all('div', 'block termin')[0].find_all('a')
-    services_pages += [s.get('href') for s in services if SERVICE_NAME in s.text.lower()]
+    services_pages += [s.get('href') for s in services if args.service in s.text.lower()]
 
 reservation_pages = []
 for p in services_pages:
@@ -75,7 +83,7 @@ l_slots = len(slots)
 if l_slots:
     input("\n--- Press ENTER and watch the first page I'm opening to solve the CAPTCHA (if it's there). ---")
     webbrowser.open_new(slots[0])
-    input("--- Press ENTER when solved, or CTRL-C to finish, if you already booked a reservation. ---")
+    input("--- Press ENTER when solved, or CTRL-C to finish, if you've already booked a reservation. ---")
     for s in slots:
         webbrowser.open_new_tab(s)
 else:
