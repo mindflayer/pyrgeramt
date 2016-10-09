@@ -1,14 +1,32 @@
 from collections import defaultdict
 import webbrowser
+import time
+import random
+import sys
 
 from robobrowser import RoboBrowser
+from fake_useragent import UserAgent
+
+
+class BurgyBrowser(RoboBrowser):
+    ua = UserAgent(cache=False)
+    requests = 0
+
+    def open(self, *args, **kwargs):
+        time.sleep(random.uniform(0.5, 1.5))
+        self.session.headers['User-Agent'] = self.ua.random
+        if self.requests:
+            sys.stdout.write("#")
+            sys.stdout.flush()
+        super(BurgyBrowser, self).open(*args, **kwargs)
+        self.requests += 1
 
 SERVICE_NAME = 'anmeldung'
 
 START_URL = 'https://service.berlin.de'
-FAKE_UA = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0'
 
-browser = RoboBrowser(parser="html.parser", user_agent=FAKE_UA)
+browser = BurgyBrowser(parser="html.parser")
+
 browser.open('{}{}'.format(START_URL, '/standorte/buergeraemter/'))
 
 print('Select a Bürgeramt area corresponding number:\n')
@@ -61,4 +79,4 @@ if l_slots > 1:
 elif l_slots == 1:
     webbrowser.open_new(slots[0])
 else:
-    print('No dates in "{}", try another Bürgeramt area.'.format(area))
+    print('\nNo dates in "{}", try another Bürgeramt area.'.format(area))
