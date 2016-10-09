@@ -2,8 +2,8 @@ Installation
 -----------
 
 ```
-virtualenv -p python3 .venv
-source .venv/bin/activate
+virtualenv -p python3 .env
+source .env/bin/activate
 pip install -r requirements.txt
 ```
 
