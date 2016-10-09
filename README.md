@@ -13,5 +13,5 @@ After the area selection, if there are free slots in it, it will point your favo
 If you got some captchas, just solve one of them and execute the script again.
 
 ```
-python berlin.py
+python berlin.py --service anmeldung  # or 'abmeldung', or what else?
 ```
