@@ -11,7 +11,7 @@ FAKE_UA = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firef
 browser = RoboBrowser(parser="html.parser", user_agent=FAKE_UA)
 browser.open('{}{}'.format(START_URL, '/standorte/buergeraemter/'))
 
-print('Select a Bürgerämt area corresponding number:\n')
+print('Select a Bürgeramt area corresponding number:\n')
 
 area_list = []
 burgers = defaultdict(list)
@@ -61,4 +61,4 @@ if l_slots > 1:
 elif l_slots == 1:
     webbrowser.open_new(slots[0])
 else:
-    print('No dates in "{}", try another Bürgerämt area.'.format(area))
+    print('No dates in "{}", try another Bürgeramt area.'.format(area))
