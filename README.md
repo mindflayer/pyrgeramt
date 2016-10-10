@@ -9,8 +9,8 @@ pip install -r requirements.txt
 
 Usage
 -----
-After the area selection, if there are free slots in it, it will point your favourite browser to the reservation pages.
-If you got some captchas, just solve one of them and execute the script again.
+After the area selection, if there are free slots in it, it will point your favourite browser to one of the reservation page.
+You'll probably need to solve a CAPTCHA, do it and tell the script you are ready to open all the pages it found for you.
 
 ```
 python berlin.py --service anmeldung  # or 'abmeldung', or what else?
