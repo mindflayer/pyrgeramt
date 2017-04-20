@@ -2,6 +2,7 @@ Installation
 -----------
 
 ```
+git clone git@github.com:mindflayer/pyrgeramt.git
 virtualenv -p python3 .env
 source .env/bin/activate
 pip install -r requirements.txt
